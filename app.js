@@ -11,6 +11,9 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 
+app.get("/", (req, res) => {
+    res.json({ message: "Welcome to contact book application."});
+});
 
 app.use("/api/contacts",contactsRouter);
 
@@ -22,8 +25,5 @@ app.use((error, req, res, next) => {
     return res.status(error.statusCode || 500).json({
         message: error.message || "Internal Server Error",
     });
-});
-app.get("/", (req, res) => {
-    res.json({ message: "Welcome to contact book application."});
 });
 module.exports = app;
